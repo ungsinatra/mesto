@@ -31,3 +31,15 @@
 @import url('/blocks/popup/__input/_value/popup__input_value_desc.css');
 @import url('/blocks/popup/__input/_value/popup__input_value_name.css');
 @import url('/blocks/popup/__opened/popup__opened.css');
+
+
+
+/* places */
+@import url('/blocks/place/place.css');
+@import url('/blocks/place/__container/place__container.css');
+@import url('/blocks/place/__item/place__item.css');
+@import url('/blocks/place/__img/place__img.css');
+@import url('/blocks/place/__features/place__features.css');
+@import url('/blocks/place/__title/place__title.css');
+@import url('/blocks/place/__btn-like/place__btn-like.css');
+@import url('/blocks/place/__btn-like/_status/place__btn-like_status_liked.css');
