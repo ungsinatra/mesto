@@ -43,3 +43,9 @@
 @import url('/blocks/place/__title/place__title.css');
 @import url('/blocks/place/__btn-like/place__btn-like.css');
 @import url('/blocks/place/__btn-like/_status/place__btn-like_status_liked.css');
+
+
+/* footer */
+
+@import url('/blocks/footer/footer.css');
+@import url('/blocks/footer/__desc/footer__desc.css');
