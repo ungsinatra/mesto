@@ -1,0 +1,6 @@
+.place__btn-like_status_liked{
+    background-image: url('/images/place/like-active.svg');
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
+}

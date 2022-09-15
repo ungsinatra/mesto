@@ -1,0 +1,9 @@
+.place__item{
+    width: 282px;
+    display: flex;
+    overflow: hidden;
+    min-height: 361px;
+    flex-direction: column;
+    /* border: 1px solid white; */
+    border-radius: 10px; 
+}
