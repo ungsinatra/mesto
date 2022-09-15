@@ -18,3 +18,16 @@
 @import url(/blocks/profile/__name/profile__name.css);
 @import url(/blocks/profile/__description/profile__description.css);
 
+/* popup */
+@import url('/blocks/popup/popup.css');
+@import url('/blocks/popup/__content/popup__content.css');
+@import url('/blocks/popup/popup__title/popup__title.css');
+@import url("/blocks/popup/__desc/popup__desc.css");
+@import url('/blocks/popup/popup__form/popup__form.css');
+@import url('/blocks/popup/__btn-save/popup__btn-save.css');
+@import url('/blocks/popup/__btn-save/popup__btn-save.css');
+@import url('/blocks/popup/__close-btn/popup__close-btn.css');
+@import url('/blocks/popup/__input/popup__input.css');
+@import url('/blocks/popup/__input/_value/popup__input_value_desc.css');
+@import url('/blocks/popup/__input/_value/popup__input_value_name.css');
+@import url('/blocks/popup/__opened/popup__opened.css');
