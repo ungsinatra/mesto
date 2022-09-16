@@ -8,3 +8,23 @@
     box-sizing: border-box;
     padding: 40px 0 50px 0;
 }
+
+
+@media screen and (max-width:1024px) {
+    .profile{
+        padding: 40px 10px 50px 10px;  
+    }
+}
+@media screen and (max-width:768px) {
+    .profile{
+        padding: 30px 19px 40px 19px;  
+    }
+}
+
+@media screen and (max-width:720px){
+    .profile{
+        max-width: 100%;
+        width: 100%;
+    }
+}
+

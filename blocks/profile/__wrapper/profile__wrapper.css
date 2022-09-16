@@ -5,3 +5,15 @@
     align-items: center; 
     column-gap: 30px; 
 }
+
+@media screen and (max-width:720px) {
+    .profile__wrapper{
+        column-gap: 20px;
+    }
+}
+@media screen and (max-width:580px) {
+    .profile__wrapper{
+        flex-direction: column;
+        column-gap: 20px;
+    }
+}

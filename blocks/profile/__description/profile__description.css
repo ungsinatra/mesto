@@ -12,3 +12,23 @@
     max-width: 336px; 
     color: #FFFFFF;
 }
+
+
+
+@media screen and (max-width:444px){
+    .profile__description{
+        justify-self: center;
+    }
+    
+}
+
+@media screen and (max-width:320px){
+    .profile__description{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;  
+    }
+    
+}
+
