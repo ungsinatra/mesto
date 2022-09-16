@@ -9,3 +9,9 @@
     column-gap: 17px;
     justify-content: center;
 }
+@media screen and (max-width:580px) {
+    .place__container{
+        grid-template-columns: repeat(1,minmax(282px,542px));
+        justify-content: center;
+    }
+}
