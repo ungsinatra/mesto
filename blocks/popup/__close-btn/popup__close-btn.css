@@ -19,3 +19,19 @@
 .popup__close-btn:hover{
     opacity: 0.7;
 }
+@media screen and (max-width:580px){
+    .popup__close-btn{
+        top:-40px;
+        right: 0;
+        width: 25px;
+        height: 25px;
+    }
+}
+@media screen and (max-width:320px){
+    .popup__close-btn{
+        top:-35px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
+}

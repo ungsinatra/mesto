@@ -8,3 +8,21 @@
 .popup__input:nth-child(2){
     margin-bottom: 48px;
 }
+@media screen and (max-width:444px) {
+    .popup__input{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 30px;
+    }
+    .popup__input:nth-child(2){
+        margin-bottom: 45px;
+    }
+}
+@media screen and (max-width:320px) {
+    .popup__input{
+        width: 238px;
+    }
+    
+}
