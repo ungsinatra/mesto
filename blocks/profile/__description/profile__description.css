@@ -9,7 +9,8 @@
     text-overflow: ellipsis; 
     white-space: nowrap; 
     overflow: hidden; 
-    max-width: 336px; 
+    max-width: 294px; 
+    width: 100%;
     color: #FFFFFF;
 }
 

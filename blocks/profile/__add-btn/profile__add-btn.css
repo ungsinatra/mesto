@@ -4,7 +4,7 @@
     background-repeat: no-repeat; 
     background-size: 22px 22px; 
     background-position: center; 
-    padding: 12px 62px; 
+    padding: 14px 72px; 
     background-color: #000; 
     border: 2px solid #fff; 
     border-radius: 2px; 
@@ -34,7 +34,10 @@
 }
 @media screen and (max-width:320px) {
     .profile__add-btn{
+        padding: 0;
         margin:0;
+        border: 2px solid white;
+        background-size: 16px 16px;
         height: 50px;
         width: 282px;
     }

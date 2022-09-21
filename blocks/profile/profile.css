@@ -28,3 +28,9 @@
     }
 }
 
+@media screen and (max-width:320px){
+    .profile{
+        padding: 42px 19px 36px 19px;
+    }
+}
+

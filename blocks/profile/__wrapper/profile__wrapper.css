@@ -14,6 +14,7 @@
 @media screen and (max-width:580px) {
     .profile__wrapper{
         flex-direction: column;
-        column-gap: 20px;
+        justify-content: center;
+        column-gap: 20px;   
     }
 }
