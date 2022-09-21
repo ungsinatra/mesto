@@ -5,13 +5,13 @@
     padding-bottom: 36px;
     border-bottom:1px solid #545454;
 }
-
-@media screen and (max-width:444px) {
+@media screen and (max-width:768px) {
     .header{
         padding: 0 0 31px 19px;
     }
     
 }
+
 @media screen and (max-width:320px) {
     .header{
         padding: 0 0 27px 27px;
