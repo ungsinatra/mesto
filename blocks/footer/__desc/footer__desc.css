@@ -15,3 +15,12 @@
         padding: 0 19px 0 19px;
     }
 }
+@media screen and (max-width:444px) {
+    .footer__desc{
+        padding: 0 19px 0 19px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
