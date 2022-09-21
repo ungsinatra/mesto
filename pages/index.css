@@ -32,8 +32,10 @@
 @import url('../blocks/popup/__input/_value/popup__input_value_desc.css');
 @import url('../blocks/popup/__input/_value/popup__input_value_name.css');
 @import url('../blocks/popup/__opened/popup__opened.css');
-
-
+@import url('../blocks/place/__btn-del/place__btn-del.css');
+@import url('../blocks/popup/__content/_use/popup__content_use_img.css');
+@import url('../blocks/popup/__img/popup__img.css');
+@import url('../blocks/popup/_use/popup_use_img.css');
 
 /* places */
 @import url('../blocks/place/place.css');
