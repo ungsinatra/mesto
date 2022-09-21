@@ -10,7 +10,7 @@
 <body>
     <div class="page">
         <header class="header">
-            <img src  = "/images/logo.svg" class="header__logo" alt="хадр лого"></img>
+            <img src  = "/images/logo.svg" class="header__logo" alt="хадр лого">
         </header>
         <main>
         <section class="profile">
@@ -28,68 +28,53 @@
            
         </section>
         <section class="place">
-            <ul class="place__container">
-                <li class="place__item">
-                <img src="/images/place/kirill-pershin.jpg" alt="Карачаевск" class="place__img">
-                <div class="place__features">
-                    <h3 class="place__title">Карачаевск</h3>
-                    <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
-                </div>
-            </li>
-            <li class="place__item">
-                <img src="/images/place/Elbrus.png" alt="Гора Эльбрус" class="place__img">
-                <div class="place__features">
-                    <h3 class="place__title">Гора Эльбру</h3>
-                    <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
-                </div>
-            </li>
-            <li class="place__item">
-                <img src="/images/place/Dombai.png" alt="Домбай" class="place__img">
-                <div class="place__features">
-                    <h3 class="place__title">Домбай</h3>
-                    <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
-                </div>
-            </li>
-            <li class="place__item">
-                <img src="/images/place/ala-archa.jpg" alt="Ала-Арча" class="place__img">
-                <div class="place__features">
-                    <h3 class="place__title">Ала-Арча</h3>
-                    <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
-                </div>
-            </li>
-            <li class="place__item">
-                <img src="/images/place/almaty.jpg" alt="Алматы" class="place__img">
-                <div class="place__features">
-                    <h3 class="place__title">Алматы</h3>
-                    <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
-                </div>
-            </li>
-            <li class="place__item">
-                <img src="/images/place/south-pole.jpg" alt="Северный полюс" class="place__img">
-                <div class="place__features">
-                    <h3 class="place__title">Сервеный полюс</h3>
-                    <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
-                </div>
-            </li>
-            </ul>
-            
+            <ul class="place__container"></ul> 
         </section>
-        <div class="popup">
-            <div class="popup__content">
-                <button type="button" aria-label="Закрыть попап" class="popup__close-btn"></button>
-                <h4 class="popup__title">Редактировать профиль</h4>
-                <form action="#" method="post" class="popup__form">
-                    <input type="text" name="popupName" placeholder="Имя" class="popup__input popup__input_value_name" required>
-                    <input type="text" name="popupDesc" placeholder="Работа" class="popup__input popup__input_value_desc" required>
-                    <button type="submit" class="popup__btn-save">Сохранить</button>
-                </form>
-            </div>
-        </div>
+    
     </main>
+    <div class="popup popup_use_profile">
+        <div class="popup__content">
+            <button type="button" aria-label="Закрыть попап" class="popup__close-btn"></button>
+            <h4 class="popup__title">Редактировать профиль</h4>
+            <form action="#" method="post" class="popup__form popup__form_use_profile">
+                <input type="text" name="popupName" placeholder="Имя" class="popup__input popup__input_value_name" required>
+                <input type="text" name="popupDesc" placeholder="Работа" class="popup__input popup__input_value_desc" required>
+                <button type="submit" class="popup__btn-save">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_use_card">
+        <div class="popup__content">
+            <button type="button" aria-label="Закрыть попап" class="popup__close-btn popup__close-btn-card"></button>
+            <h4 class="popup__title">Новое место</h4>
+            <form action="#"  class="popup__form popup__form_use_card">
+                <input type="text" name="popupName" placeholder="Навание" class="popup__input popup__input_value_name" required>
+                <input type="text" name="popupDesc" placeholder="Ссылка на картинку" class="popup__input popup__input_value_link" required>
+                <button type="submit" class="popup__btn-save popup__btn-create ">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_use_img">
+        <div class="popup__content_use_img">
+            <button type="button" aria-label="Закрыть попап" class="popup__close-btn popup__close-btn-img"></button>
+            <img src="" alt="" class="popup__img">
+            <p class="popup__desc"></p>
+        </div>
+    </div>
     <footer class="footer">
         <h5 class="footer__desc">© 2020 Mesto Russia</h5>
     </footer>
-    </div>
+</div>
+     <template id  = 'card-tmp'>
+        <li class="place__item">
+        <button type="button" aria-label="Удалить" class="place__btn-del"></button>
+            <img src="" alt="" class="place__img">
+            <div class="place__features">
+                <h3 class="place__title">Карачаевск</h3>
+                <button type = "button" aria-label="Нравиться" class="place__btn-like"></button>
+            </div>
+        </li>
+    </template>
     <script src="/scripts/index.js"></script>
 </body>
 </html>
