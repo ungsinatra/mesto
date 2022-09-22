@@ -23,15 +23,13 @@
     .popup__close-btn{
         top:-40px;
         right: 0;
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
     }
 }
 @media screen and (max-width:320px){
     .popup__close-btn{
         top:-35px;
         right: 0;
-        width: 20px;
-        height: 20px;
     }
 }
