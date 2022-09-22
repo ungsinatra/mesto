@@ -2,7 +2,7 @@
     cursor: pointer;
     width: 22px;
     height: 19px;
-    background-image: url('/images/place/like.svg');
+    background-image: url('../../../images/place/like.svg');
     background-size: cover;
     border: none;
     background-repeat: no-repeat;
