@@ -1,6 +1,6 @@
 .profile__add-btn{
     color: #fff; 
-    background-image: url('/images/Add\ Button.svg'); 
+    background-image: url('../../../images/Add\ Button.svg'); 
     background-repeat: no-repeat; 
     background-size: 22px 22px; 
     background-position: center; 
