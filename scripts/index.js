@@ -111,7 +111,6 @@ addCardBtn.addEventListener("click", () => {
 //*CARDS IMG LISTENER
 function popupImgOpenHandler(img) {
   img.addEventListener("click", (evt) => {
-    console.log("asdas");
     const img = evt.target;
     popupImg.classList.add("popup__opened");
     popupImg.querySelector(selectors.popupImage).src = img.src;
@@ -127,7 +126,7 @@ function renderCards(element) {
 
 function likeCardHandler(like) {
   like.addEventListener("click", (evt) => {
-    console.log("asdasd");
+  
     evt.target.classList.toggle(selectors.cardLikeBtnActive);
   });
 }
@@ -190,3 +189,29 @@ const initialCards = [
 initialCards.forEach((card) => {
   renderCards(card);
 });
+
+
+// *ESC 
+
+function closePopupOverlayEscape(popup){
+  document.addEventListener('keydown',function(evt){
+    if(evt.key === 'Escape'){
+      closePopup(popup)
+    }    
+  })
+}
+function closePopupClickOverlay(popup){
+  popup.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('popup') ){
+      closePopup(popup)
+    }
+  })
+}
+function setListenerPopups(){
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach(popup => {
+    closePopupOverlayEscape(popup);
+    closePopupClickOverlay(popup)
+  })
+}
+setListenerPopups()
