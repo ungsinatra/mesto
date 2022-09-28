@@ -55,17 +55,22 @@ const template = document.querySelector(selectors.template).content;
 const place = document.querySelector(selectors.place);
 const placeContainer = place.querySelector(selectors.placeContainer);
 const placeImg = place.querySelector(selectors.placeImg);
+nameInput.value = profile.querySelector(selectors.name).textContent;
+descInput.value = profile.querySelector(selectors.work).textContent;
 
+function fillProfileInputs(){
+  nameInput.value = profile.querySelector(selectors.name).textContent;
+  descInput.value = profile.querySelector(selectors.work).textContent;
+}
 // *SUBMIT EDIT PROFILE FORM
 function formSubmitHandler(evt) {
   evt.preventDefault();
   name.textContent = nameInput.value;
   work.textContent = descInput.value;
-  nameInput.value = profile.querySelector(selectors.name).textContent;
-  descInput.value = profile.querySelector(selectors.work).textContent;
+  fillProfileInputs()
   closePopup(popupProfile);
 }
-
+fillProfileInputs()
 // *PROFILE EDIT SUBMIT
 formElement.addEventListener("submit", formSubmitHandler);
 
