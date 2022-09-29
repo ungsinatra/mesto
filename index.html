@@ -41,6 +41,8 @@
           <ul class="place__container"></ul>
         </section>
       </main>
+
+<!-- popup profile -->
       <div class="popup popup_use_profile">
         <div class="popup__content">
           <button
@@ -53,25 +55,36 @@
             action="#"
             method="post"
             class="popup__form popup__form_use_profile"
+            novalidate
           >
             <input
               type="text"
               name="popupName"
+              maxlength="40"
+              minlength="2"
               placeholder="Имя"
-              class="popup__input popup__input_value_name"
+              id = 'profile-name'
+              class="popup__input  popup__input_value_name"
               required
             />
+            <span class="popup__input-error popup__input-error_possition_top profile-name-error"></span>
             <input
               type="text"
               name="popupDesc"
+              maxlength="200"
+              minlength="2"
               placeholder="Работа"
-              class="popup__input popup__input_value_desc"
+              id="profile-desc"
+              class="popup__input  popup__input_value_desc"
               required
             />
-            <button type="submit" class="popup__btn-save">Сохранить</button>
+            <span class="popup__input-error popup__input-error_possition_bottom profile-desc-error"></span>
+            
+            <button type="submit"  class="popup__btn-save">Сохранить</button>
           </form>
         </div>
       </div>
+      <!-- popup card -->
       <div class="popup popup_use_card">
         <div class="popup__content">
           <button
@@ -80,27 +93,34 @@
             class="popup__close-btn popup__close-btn-card"
           ></button>
           <h4 class="popup__title">Новое место</h4>
-          <form action="#" class="popup__form popup__form_use_card">
+          <form action="#" class="popup__form popup__form_use_card" novalidate>
             <input
               type="text"
               name="popupName"
+              maxlength="30"
+              minlength="2"
               placeholder="Навание"
-              class="popup__input popup__input_value_name"
+              id="card-name"
+              class="popup__input  popup__input_value_name"
               required
             />
+            <span class="popup__input-error popup__input-error_possition_top  card-name-error"></span>
             <input
-              type="text"
-              name="popupDesc"
+              type="url"
+              name="card-url"
+              id="card-url"
               placeholder="Ссылка на картинку"
-              class="popup__input popup__input_value_link"
+              class="popup__input  popup__input_value_link"
               required
             />
+            <span class="popup__input-error popup__input-error_possition_bottom card-url-error"></span>
             <button type="submit" class="popup__btn-save popup__btn-create">
               Создать
             </button>
           </form>
         </div>
       </div>
+      <!-- popup img -->
       <div class="popup popup_use_img">
         <div class="popup__content_use_img">
           <button
