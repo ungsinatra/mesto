@@ -51,10 +51,10 @@ function setListenerInputs(formElement) {
   });
 }
 
-function setValidOnForm() {
+function enableValidation() {
   const forms = Array.from(document.forms);
   forms.forEach((form) => {
     setListenerInputs(form);
   });
 }
-setValidOnForm();
+enableValidation();
