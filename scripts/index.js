@@ -59,7 +59,7 @@ const placeImg = place.querySelector(selectors.placeImg);
 nameInput.value = profile.querySelector(selectors.name).textContent;
 descInput.value = profile.querySelector(selectors.work).textContent;
 
-function fillProfileInputs(){
+function fillInputs(){
   nameInput.value = profile.querySelector(selectors.name).textContent;
   descInput.value = profile.querySelector(selectors.work).textContent;
 }
@@ -68,10 +68,10 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   name.textContent = nameInput.value;
   work.textContent = descInput.value;
-  fillProfileInputs()
+  fillInputs()
   closePopup(popupProfile);
 }
-fillProfileInputs()
+// fillProfileInputs()
 // *PROFILE EDIT SUBMIT
 formElement.addEventListener("submit", formSubmitHandler);
 
@@ -195,17 +195,22 @@ initialCards.forEach((card) => {
 
 // *ESC 
 
+
 function closePopupOverlayEscape(popup){
   document.addEventListener('keydown',function(evt){
     if(evt.key === 'Escape'){
       closePopup(popup)
-    }    
+      fillInputs()
+
+    }
   })
 }
 function closePopupClickOverlay(popup){
   popup.addEventListener('click', (evt) => {
     if(evt.target.classList.contains('popup') ){
       closePopup(popup)
+      fillInputs()
+      
     }
   })
 }
