@@ -1,3 +1,6 @@
+import  FormValidator  from "./FormValidator.js";
+console.log(FormValidator)
+
 const selectors = {
   // popup
   popup: ".popup",
@@ -31,6 +34,8 @@ const selectors = {
   placeContainer: ".place__container",
   placeImg: ".place__img",
 };
+
+
 
 // *popup and form
 const formElement = document.querySelector(selectors.form);
@@ -224,5 +229,20 @@ function setListenerPopups(){
 setListenerPopups()
 
 
+const popupSelecors = {
+  popupInput: ".popup__input",
+  popupInputTypeEror: "popup__input_type_error",
+  popupInputError: "poup__input-error",
+  popupForm: ".popup__form",
+  popupInactiveBtn: "popup__btn-inactive",
+  button: "button",
+};
 
-
+function setInput(){
+  const forms = Array.from(document.forms);
+  forms.forEach(form => {
+    const validForm = new FormValidator(popupSelecors,form);
+    validForm.enableValidation(selectors)
+  })
+}
+setInput()
