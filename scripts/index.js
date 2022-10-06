@@ -1,5 +1,6 @@
-import  FormValidator  from "./FormValidator.js";
-console.log(FormValidator)
+import  {FormValidator}  from "./FormValidator.js";
+import {Card} from "./Card.js";
+
 
 const selectors = {
   // popup
@@ -15,6 +16,7 @@ const selectors = {
   closeBtn: ".popup__close-btn",
   popupImage: ".popup__img",
   popupImgHeading: ".popup__desc",
+  popupOpen:"popup__opened",
   // PROFILE
   profile: ".profile",
   name: ".profile__name",
@@ -26,9 +28,12 @@ const selectors = {
   cardItem: ".place__item",
   cardTitle: ".place__title",
   cardImg: ".place__img",
+  cardImage: "place__img",
   cardLikeBtn: ".place__btn-like",
   cardLikeBtnActive: "place__btn-like_status_liked",
   cardDellBtn: ".place__btn-del",
+  like:'place__btn-like',
+  remove:'place__btn-del',
   //place
   place: ".place",
   placeContainer: ".place__container",
@@ -41,10 +46,8 @@ const selectors = {
 const formElement = document.querySelector(selectors.form);
 const nameInput = formElement.querySelector(selectors.inputName);
 const descInput = formElement.querySelector(selectors.inputDesc);
-const popup = document.querySelector(selectors.popup);
 const closePopupBnts = document.querySelectorAll(selectors.closeBtn);
 const popupProfile = document.querySelector(selectors.popupProfile);
-const popupImg = document.querySelector(selectors.popupImg);
 const popupCard = document.querySelector(selectors.popupCard);
 const formAddCard = popupCard.querySelector(selectors.form);
 
@@ -57,10 +60,6 @@ const work = profile.querySelector(selectors.work);
 
 // *CARD
 const template = document.querySelector(selectors.template).content;
-//*PLACE
-const place = document.querySelector(selectors.place);
-const placeContainer = place.querySelector(selectors.placeContainer);
-const placeImg = place.querySelector(selectors.placeImg);
 nameInput.value = profile.querySelector(selectors.name).textContent;
 descInput.value = profile.querySelector(selectors.work).textContent;
 
@@ -68,7 +67,10 @@ function fillInputs(){
   nameInput.value = profile.querySelector(selectors.name).textContent;
   descInput.value = profile.querySelector(selectors.work).textContent;
 }
+
+
 // *SUBMIT EDIT PROFILE FORM
+
 function formSubmitHandler(evt) {
   evt.preventDefault();
   name.textContent = nameInput.value;
@@ -76,14 +78,23 @@ function formSubmitHandler(evt) {
   fillInputs()
   closePopup(popupProfile);
 }
+
+
+
 // fillProfileInputs()
 // *PROFILE EDIT SUBMIT
+
 formElement.addEventListener("submit", formSubmitHandler);
 
+
+
 //*POPUP OPEN
+
 function openPopupHandler(popup) {
   popup.classList.add("popup__opened");
 }
+
+
 
 //*POPUP CLOSE
 
@@ -115,57 +126,6 @@ addCardBtn.addEventListener("click", () => {
   openPopupHandler(popupCard);
 });
 
-//*CARDS IMG LISTENER
-function popupImgOpenHandler(img) {
-  img.addEventListener("click", (evt) => {
-    const img = evt.target;
-    popupImg.classList.add("popup__opened");
-    popupImg.querySelector(selectors.popupImage).src = img.src;
-    popupImg.querySelector(selectors.popupImgHeading).textContent = img.alt;
-  });
-}
-
-// *ADD CARDS
-
-function renderCards(element) {
-  placeContainer.prepend(makeCard(element));
-}
-
-function likeCardHandler(like) {
-  like.addEventListener("click", (evt) => {
-  
-    evt.target.classList.toggle(selectors.cardLikeBtnActive);
-  });
-}
-function removeCardHandler(dellBtn) {
-  dellBtn.addEventListener("click", (evt) => {
-    const cardElemet = evt.target.parentNode;
-    cardElemet.remove();
-  });
-}
-
-function makeCard(element) {
-  const card = template.querySelector(".place__item").cloneNode(true);
-  const cardTitle = card.querySelector(selectors.cardTitle);
-  const cardDellBtn = card.querySelector(selectors.cardDellBtn);
-  const cardLikeBtn = card.querySelector(selectors.cardLikeBtn);
-  const cardImg = card.querySelector(selectors.cardImg);
-
-  cardImg.src = element.link;
-  cardImg.alt = element.name;
-  cardTitle.textContent = element.name;
-  likeCardHandler(cardLikeBtn);
-  removeCardHandler(cardDellBtn);
-  popupImgOpenHandler(cardImg);
-  return card;
-}
-function addCardInputHandler() {
-  const name = formAddCard.querySelector(selectors.inputName).value;
-  const link = formAddCard.querySelector(selectors.inputLink).value;
-  renderCards({ name, link });
-  formAddCard.reset();
-}
-
 const initialCards = [
   {
     name: "Челябинская область",
@@ -193,10 +153,19 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((card) => {
-  renderCards(card);
+initialCards.forEach((element) => {
+  const card = new Card(selectors,template);
+  card.renderCards(element);
 });
 
+
+function addCardInputHandler() {
+  const name = formAddCard.querySelector(selectors.inputName).value;
+  const link = formAddCard.querySelector(selectors.inputLink).value;
+  const card = new Card(selectors,template);
+  card.renderCards({name,link})
+  formAddCard.reset();
+}
 
 // *ESC 
 
@@ -206,7 +175,6 @@ function closePopupOverlayEscape(popup){
     if(evt.key === 'Escape'){
       closePopup(popup)
       fillInputs()
-
     }
   })
 }
