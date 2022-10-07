@@ -1,52 +1,39 @@
 class Card{
-    constructor(data,template){
-        this._data = data;
+    constructor(name,url,selectors,template){
+        this._selectors = selectors;
         this._template = template;
-        this._popupImg = document.querySelector(this._data.popupImg);
-        this._card = this._template.querySelector(this._data.cardItem).cloneNode(true);
-        this._place = document.querySelector(this._data.placeContainer);
+        this._name = name;
+        this._url = url
+        this._popupImg = document.querySelector(this._selectors.popupImg);
+        this._card = this._template.querySelector(this._selectors.cardItem).cloneNode(true);
     }
 
     _handleLike(button){
-        button.classList.toggle(this._data.cardLikeBtnActive);
+        button.classList.toggle(this._selectors.cardLikeBtnActive);
     }
-    _removeCard(card){
-        card.remove();
+    _removeCard(){
+        this._card.remove();
     }
-    _makeCard(element){
-        this._card.querySelector(this._data.cardTitle).textContent = element.name;
-        this._card.querySelector(this._data.cardImg).src = element.link;
-        this._card.querySelector(this._data.cardImg).alt = element.name;
+    genaraeteTemplate(){
+        this._card.querySelector(this._selectors.cardTitle).textContent = this._name;
+        this._card.querySelector(this._selectors.cardImg).src = this._url;
+        this._card.querySelector(this._selectors.cardImg).alt = this._name;
         this._setListeners(this._card)
         return this._card
     }
 
-    renderCards(element){
-        this._place.prepend(this._makeCard(element));
-    }
-
-    _setListeners(card){
-        card.addEventListener('click',(evt) => {
+    _setListeners(){
+        this._card.addEventListener('click',(evt) => {
             console.log(evt.target)
-            if(evt.target.classList.contains(this._data.like)){
+            if(evt.target.classList.contains(this._selectors.like)){
                 const likeButton = evt.target;
                 this._handleLike(likeButton);
             }
-            if (evt.target.classList.contains(this._data.remove)){
-                this._removeCard(card)
-            }
-            if (evt.target.classList.contains(this._data.cardImage)){
-                const img = evt.target;
-                this._showImageCard(img);
+            if (evt.target.classList.contains(this._selectors.remove)){
+                this._removeCard()
             }
         })
     }
-    _showImageCard(img){
-            this._popupImg.classList.add(this._data.popupOpen);
-            this._popupImg.querySelector(this._data.popupImage).src = img.src;
-            this._popupImg.querySelector(this._data.popupImgHeading).textContent = img.alt;
-    }
-
 }
 
 export {Card};
