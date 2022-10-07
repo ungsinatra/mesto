@@ -50,6 +50,7 @@ const closePopupBnts = document.querySelectorAll(selectors.closeBtn);
 const popupProfile = document.querySelector(selectors.popupProfile);
 const popupCard = document.querySelector(selectors.popupCard);
 const formAddCard = popupCard.querySelector(selectors.form);
+const popupImg = document.querySelector(selectors.popupImg)
 
 // *PROFILE
 const profile = document.querySelector(selectors.profile);
@@ -60,6 +61,7 @@ const work = profile.querySelector(selectors.work);
 
 // *CARD
 const template = document.querySelector(selectors.template).content;
+const placeContainer = document.querySelector(selectors.placeContainer)
 nameInput.value = profile.querySelector(selectors.name).textContent;
 descInput.value = profile.querySelector(selectors.work).textContent;
 
@@ -126,6 +128,17 @@ addCardBtn.addEventListener("click", () => {
   openPopupHandler(popupCard);
 });
 
+// //*CARDS IMG LISTENER
+function popupImgOpenHandler(template) {
+  const img = template.querySelector('.place__img');
+  img.addEventListener("click", (evt) => {
+    console.log("asdas");
+    popupImg.classList.add("popup__opened");
+    popupImg.querySelector(selectors.popupImage).src = img.src;
+    popupImg.querySelector(selectors.popupImgHeading).textContent = img.alt;
+  });
+}
+
 const initialCards = [
   {
     name: "Челябинская область",
@@ -154,16 +167,20 @@ const initialCards = [
 ];
 
 initialCards.forEach((element) => {
-  const card = new Card(selectors,template);
-  card.renderCards(element);
+  const card = new Card(element.name,element.link,selectors,template);
+  const cardtemplate = card.genaraeteTemplate();
+  placeContainer.prepend(cardtemplate)
+  popupImgOpenHandler(cardtemplate)
 });
 
 
 function addCardInputHandler() {
   const name = formAddCard.querySelector(selectors.inputName).value;
   const link = formAddCard.querySelector(selectors.inputLink).value;
-  const card = new Card(selectors,template);
-  card.renderCards({name,link})
+  const card = new Card( name,link, selectors, template);
+  const cardtemplate = card.genaraeteTemplate();
+  placeContainer.prepend(cardtemplate)
+  popupImgOpenHandler(cardtemplate)
   formAddCard.reset();
 }
 
@@ -214,3 +231,8 @@ function setInput(){
   })
 }
 setInput()
+
+
+
+
+
