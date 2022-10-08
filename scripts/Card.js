@@ -6,10 +6,11 @@ class Card{
         this._url = url
         this._popupImg = document.querySelector(this._selectors.popupImg);
         this._card = this._template.querySelector(this._selectors.cardItem).cloneNode(true);
+        this._likeButton =  this._template.querySelector(selectors.like);
     }
 
-    _handleLike(button){
-        button.classList.toggle(this._selectors.cardLikeBtnActive);
+    _handleLike(){
+        this._likeButton.classList.toggle(this._selectors.cardLikeBtnActive);
     }
     _removeCard(){
         this._card.remove();
@@ -24,10 +25,8 @@ class Card{
 
     _setListeners(){
         this._card.addEventListener('click',(evt) => {
-            console.log(evt.target)
             if(evt.target.classList.contains(this._selectors.like)){
-                const likeButton = evt.target;
-                this._handleLike(likeButton);
+                this._handleLike();
             }
             if (evt.target.classList.contains(this._selectors.remove)){
                 this._removeCard()

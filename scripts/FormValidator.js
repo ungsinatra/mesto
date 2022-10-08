@@ -3,7 +3,7 @@ class FormValidator {
     this._selectors = selectors;
     this._form = form;
     this._inputLists = Array.from(this._form.querySelectorAll(this._selectors.popupInput));
-    this._saveButton = this._form.querySelector('.popup__btn-save');
+    this._saveButton = this._form.querySelector(this._selectors.buttonSave);
   }
   enableValidation() {
     this._setListenerInputs();
