@@ -6,7 +6,7 @@ class Card{
         this._url = url
         this._popupImg = document.querySelector(this._selectors.popupImg);
         this._card = this._template.querySelector(this._selectors.cardItem).cloneNode(true);
-        this._likeButton =  this._template.querySelector(selectors.like);
+        this._likeButton =  this._card.querySelector(this._selectors.likeButton);
     }
 
     _handleLike(){
