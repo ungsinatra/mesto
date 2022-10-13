@@ -1,5 +1,10 @@
 import  {FormValidator}  from "./FormValidator.js";
 import {Card} from "./Card.js";
+import {Section} from "./Section.js"
+import { Popup } from "./Popup.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithform } from "./PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
 
 
 const initialCards = [
@@ -29,7 +34,7 @@ const initialCards = [
   },
 ];
 
-const selectors = {
+ export const selectors = {
   // popup
   popup: ".popup",
   popupProfile: ".popup_use_profile",
@@ -61,7 +66,6 @@ const selectors = {
   placeContainer: ".place__container",
   placeImg: ".place__img",
 };
-
 const cardSelectors = {
   cardItem: ".place__item",
   cardImg: ".place__img",
@@ -108,149 +112,174 @@ const work = profile.querySelector(selectors.work);
 const template = document.querySelector(selectors.template).content;
 const placeContainer = document.querySelector(selectors.placeContainer);
 const cardImg = template.querySelector(selectors.placeImg);
+console.log(profileEditBtn)
+console.log(addCardBtn);
 
 
 
 
 
-function fillInputs(){
-  nameInput.value = name.textContent;
-  descInput.value = work.textContent;
-}
-
-
-
-// *SUBMIT EDIT PROFILE FORM
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  name.textContent = nameInput.value;
-  work.textContent = descInput.value;
-  fillInputs()
-  closePopup(popupProfile);
-}
-
-
-
-
-// *PROFILE EDIT SUBMIT
-formElement.addEventListener("submit", formSubmitHandler);
-
-
-
-//*POPUP OPEN
-
-function openPopupHandler(popup) {
-  popup.classList.add(selectors.popupOpen);
-}
-
-
-
-//*POPUP CLOSE
-
-closePopupBnts.forEach((bnt) => {
-  bnt.addEventListener("click", (evt) => {
-    const popup = evt.target.closest(selectors.popup);
-    closePopup(popup);
-  });
-});
-
-
-function closePopup(popup) {
-  popup.classList.remove(selectors.popupOpen);
-}
-//* ADD CARD BNT LISTENER
-formAddCard.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  addCardInputHandler();
-  closePopup(popupCard);
-});
-
-// *PROFILE BUTTONS LISTENER
-
-profileEditBtn.addEventListener("click", () => {
-  openPopupHandler(popupProfile);
-});
-
-addCardBtn.addEventListener("click", () => {
-  openPopupHandler(popupCard);
-});
-
-// //*CARDS IMG LISTENER
-function popupImgOpenHandler(template) {
-  cardImg.addEventListener("click", (evt) => {
-    popupImage.src = img.src; 
-    popupHeading.textContent = img.alt; 
-    popupWithImg.classList.add(selectors.popupOpen); // popup должен открываться только после того, как заполним его, так что эта строчка должна быть в конце
-});
-}
-function renderCards(template){
-  placeContainer.append(template)
-}
-
-
-initialCards.forEach((element) => {
-  const card = new Card(element.name,element.link,cardSelectors,template,() => {
-    popupImage.src = element.link; 
-    popupHeading.textContent = element.name; 
-    popupWithImg.classList.add(selectors.popupOpen); 
+// CARD ADD
+const cardList = new Section({items:initialCards,renderer:item => {
+  const card  = new Card(item.name,item.link,cardSelectors,template,() => {
+    popupImgHandler(item);
   });
   const cardtemplate = card.genaraeteTemplate();
-  renderCards(cardtemplate)
-  popupImgOpenHandler(cardtemplate)
-});
+  cardList.addItem(cardtemplate);
+}},placeContainer);
+cardList.renderItems();
 
-// * ADD VALID ON FORM
-
-forms.forEach(form => {
-    const validForm = new FormValidator(popupSelecors,form);
-    validForm.enableValidation()
-  })
-
-
-function addCardInputHandler() {
-
-  const card = new Card( inputNameAddCard,inputLinkAddCard, cardSelectors, template);
-  const cardtemplate = card.genaraeteTemplate();
-  renderCards(cardtemplate)
-  popupImgOpenHandler(cardtemplate)
-  formAddCard.reset();
+function popupImgHandler({name,link}){
+  popupImage.src = link; 
+  popupHeading.textContent = name; 
+  popupWithImg.classList.add(selectors.popupOpen); 
 }
 
+// Add card form Input
 
 
-// *ESC
 
-function closePopupOverlayEscape(popup){
-  document.addEventListener('keydown',function(evt){
-    if(evt.key === 'Escape'){
-      closePopup(popup)
-      fillInputs()
-    }
-  })
-}
 
-function setListenerPopups(){
-  const popupList = Array.from(document.querySelectorAll('.popup'));
-  popupList.forEach((popup) => { 
-    closePopupOverlayEscape(popup)
-    popup.addEventListener('mousedown', (event) => { 
-        if (event.target.classList.contains('popup__opened')) { 
-          console.log('opened')
-          closePopup(popup);
-        } 
-        if (event.target.classList.contains('popup__close-btn')) {  
-          console.log('btn')
-            closePopup(popup)  
-        }  
 
-    })
 
-})
-}
+// function fillInputs(){
+//   nameInput.value = name.textContent;
+//   descInput.value = work.textContent;
+// }
 
-setListenerPopups()
-fillInputs()
+
+
+// // *SUBMIT EDIT PROFILE FORM
+
+// function formSubmitHandler(evt) {
+//   evt.preventDefault();
+//   name.textContent = nameInput.value;
+//   work.textContent = descInput.value;
+//   fillInputs()
+//   closePopup(popupProfile);
+// }
+
+
+
+
+// // *PROFILE EDIT SUBMIT
+// formElement.addEventListener("submit", formSubmitHandler);
+
+
+
+// //*POPUP OPEN
+
+// function openPopupHandler(popup) {
+//   popup.classList.add(selectors.popupOpen);
+// }
+
+
+
+// //*POPUP CLOSE
+
+// closePopupBnts.forEach((bnt) => {
+//   bnt.addEventListener("click", (evt) => {
+//     const popup = evt.target.closest(selectors.popup);
+//     closePopup(popup);
+//   });
+// });
+
+
+// function closePopup(popup) {
+//   popup.classList.remove(selectors.popupOpen);
+// }
+// //* ADD CARD BNT LISTENER
+// formAddCard.addEventListener("submit", (evt) => {
+//   evt.preventDefault();
+//   addCardInputHandler();
+//   closePopup(popupCard);
+// });
+
+// // *PROFILE BUTTONS LISTENER
+
+// profileEditBtn.addEventListener("click", () => {
+//   openPopupHandler(popupProfile);
+// });
+
+// addCardBtn.addEventListener("click", () => {
+//   openPopupHandler(popupCard);
+// });
+
+// // //*CARDS IMG LISTENER
+// function popupImgOpenHandler(template) {
+//   cardImg.addEventListener("click", (evt) => {
+//     popupImage.src = img.src; 
+//     popupHeading.textContent = img.alt; 
+//     popupWithImg.classList.add(selectors.popupOpen); // popup должен открываться только после того, как заполним его, так что эта строчка должна быть в конце
+// });
+// }
+// function renderCards(template){
+//   placeContainer.append(template)
+// }
+
+
+// initialCards.forEach((element) => {
+//   const card = new Card(element.name,element.link,cardSelectors,template,() => {
+//     popupImage.src = element.link; 
+//     popupHeading.textContent = element.name; 
+//     popupWithImg.classList.add(selectors.popupOpen); 
+//   });
+//   const cardtemplate = card.genaraeteTemplate();
+//   renderCards(cardtemplate)
+//   popupImgOpenHandler(cardtemplate)
+// });
+
+// // * ADD VALID ON FORM
+
+// forms.forEach(form => {
+//     const validForm = new FormValidator(popupSelecors,form);
+//     validForm.enableValidation()
+//   })
+
+
+// function addCardInputHandler() {
+
+//   const card = new Card( inputNameAddCard,inputLinkAddCard, cardSelectors, template);
+//   const cardtemplate = card.genaraeteTemplate();
+//   renderCards(cardtemplate)
+//   popupImgOpenHandler(cardtemplate)
+//   formAddCard.reset();
+// }
+
+
+
+// // *ESC
+
+// function closePopupOverlayEscape(popup){
+//   document.addEventListener('keydown',function(evt){
+//     if(evt.key === 'Escape'){
+//       closePopup(popup)
+//       fillInputs()
+//     }
+//   })
+// }
+
+// function setListenerPopups(){
+//   const popupList = Array.from(document.querySelectorAll('.popup'));
+//   popupList.forEach((popup) => { 
+//     closePopupOverlayEscape(popup)
+//     popup.addEventListener('mousedown', (event) => { 
+//         if (event.target.classList.contains('popup__opened')) { 
+//           console.log('opened')
+//           closePopup(popup);
+//         } 
+//         if (event.target.classList.contains('popup__close-btn')) {  
+//           console.log('btn')
+//             closePopup(popup)  
+//         }  
+
+//     })
+
+// })
+// }
+
+// setListenerPopups()
+// fillInputs()
 
 
 
