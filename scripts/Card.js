@@ -1,7 +1,8 @@
 class Card{
-    constructor(name,url,selectors,template){
+    constructor(name,url,selectors,template,popupImgHandler){
         this._selectors = selectors;
         this._template = template;
+        this._popupImgHandler = popupImgHandler;
         this._name = name;
         this._url = url
         this._popupImg = document.querySelector(this._selectors.popupImg);
@@ -16,14 +17,17 @@ class Card{
         this._card.remove();
     }
     genaraeteTemplate(){
-        this._card.querySelector(this._selectors.cardTitle).textContent = this._name;
-        this._card.querySelector(this._selectors.cardImg).src = this._url;
-        this._card.querySelector(this._selectors.cardImg).alt = this._name;
-        this._setListeners(this._card)
+        this._title =  this._card.querySelector(this._selectors.cardTitle);
+        this._img = this._card.querySelector(this._selectors.cardImg);
+        this._title.textContent = this._name;
+        this._img.src = this._url;
+        this._img.alt = this._name;
+        this._setListeners()
         return this._card
     }
 
     _setListeners(){
+        
         this._card.addEventListener('click',(evt) => {
             if(evt.target.classList.contains(this._selectors.like)){
                 this._handleLike();
@@ -31,8 +35,11 @@ class Card{
             if (evt.target.classList.contains(this._selectors.remove)){
                 this._removeCard()
             }
+            if(evt.target.classList.contains('place__img')){
+                this._popupImgHandler()
+            }
         })
     }
 }
-
+        
 export {Card};
