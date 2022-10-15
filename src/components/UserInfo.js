@@ -1,18 +1,16 @@
-import {selectors} from './index.js';
-
 class UserInfo{
-    constructor({name,decs}){
+    constructor({name,desc}){
         this._name = name;
-        this._decs = decs;
+        this._decs = desc;
     }
 
     getUserInfo(){
         return {
-            name:this._name,
-            description:this._decs,
+            name:this._name.textContent,
+            desc:this._decs.textContent,
         }
     }
-    setUserInfo(name,desc){
+    setUserInfo({name,desc}){
         this._name.textContent = name;
         this._decs.textContent = desc;
     }

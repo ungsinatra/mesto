@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="./pages/index.css">
     <title>mesto</title>
   </head>
   <body>
@@ -59,7 +59,7 @@
           >
             <input
               type="text"
-              name="popupName"
+              name="name"
               maxlength="40"
               minlength="2"
               placeholder="Имя"
@@ -70,7 +70,7 @@
             <span class="popup__input-error popup__input-error_possition_top profile-name-error"></span>
             <input
               type="text"
-              name="popupDesc"
+              name="desc"
               maxlength="200"
               minlength="2"
               placeholder="Работа"
@@ -96,7 +96,7 @@
           <form action="#" class="popup__form popup__form_use_card" novalidate>
             <input
               type="text"
-              name="popupName"
+              name="name"
               maxlength="30"
               minlength="2"
               placeholder="Навание"
@@ -107,7 +107,7 @@
             <span class="popup__input-error popup__input-error_possition_top  card-name-error"></span>
             <input
               type="url"
-              name="card-url"
+              name="link"
               id="card-url"
               placeholder="Ссылка на картинку"
               class="popup__input  popup__input_value_link"
@@ -154,8 +154,6 @@
         </div>
       </li>
     </template>
-    <script type = "module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/index.js" ></script>
-    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./pages/index.js" ></script>
   </body>
 </html>

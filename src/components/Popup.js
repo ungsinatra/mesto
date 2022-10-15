@@ -1,4 +1,5 @@
-import {selectors} from './index.js'
+import {selectors} from "../utils/constants.js"
+
 class Popup {
   constructor(popupSelector) {
     this._popupSelecotor = popupSelector;
@@ -18,7 +19,10 @@ class Popup {
       }
     });
   }
-
+  getForm(){
+    this._popupForm = this._popupSelecotor.querySelector('.popup__form');
+    return this._popupForm;
+  }
   setEventListeners() {
     this._handleEscClose();
     this._popupSelecotor.addEventListener("mousedown", (evt) => {

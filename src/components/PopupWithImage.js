@@ -1,5 +1,6 @@
-import { Popup } from "./Popup";
-import {selectors} from "./index.js";
+import { Popup } from "./Popup.js";
+import {selectors} from "../utils/constants.js"
+
 
 class PopupWithImage extends Popup{
     constructor(popupSelector){
@@ -14,3 +15,4 @@ class PopupWithImage extends Popup{
     }
 
 }
+export {PopupWithImage};
