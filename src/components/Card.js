@@ -1,5 +1,6 @@
+import {template} from '../utils/constants.js'
 class Card{
-    constructor(name,url,selectors,template,popupImgHandler){
+    constructor(name,url,selectors,popupImgHandler){
         this._selectors = selectors;
         this._template = template;
         this._popupImgHandler = popupImgHandler;
@@ -33,10 +34,10 @@ class Card{
                 this._handleLike();
             }
             if (evt.target.classList.contains(this._selectors.remove)){
-                this._removeCard()
+                this._removeCard();
             }
             if(evt.target.classList.contains('place__img')){
-                this._popupImgHandler()
+                this._popupImgHandler();
             }
         })
     }
