@@ -1,17 +1,25 @@
 {
-  "name": "ungsinatra_webpack",
-  "version": "0.0.1",
-  "description": "my fist webpack build",
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "- HTML\r -  CSS\r -  vanila javaScript\r -  BEM",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && webpack",
+    "build": "webpack --mode production",
     "dev": "webpack serve"
   },
-  "author": "ungsinatra",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ungsinatra/mesto.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ungsinatra/mesto/issues"
+  },
+  "homepage": "https://github.com/ungsinatra/mesto#readme",
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@babel/preset-env": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
