@@ -3,20 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css">
     <title>mesto</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" class="header__logo" alt="Логотип шапки" />
+        <img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Логотип шапки" />
       </header>
       <main>
         <section class="profile">
           <div class="profile__wrapper">
             <div class="profile__items">
               <img
-                src="./images/kusko.jpg"
+                src="<%=require('./images/kusko.jpg')%>"
                 class="profile__avatar"
                 alt="Картинка для аватара"
               />
@@ -154,6 +153,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" ></script>
   </body>
 </html>
