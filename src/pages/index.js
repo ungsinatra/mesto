@@ -6,7 +6,6 @@ import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { selectors } from "../utils/constants.js";
 import { cardSelectors } from "../utils/constants.js";
 import { popupSelecors } from "../utils/constants.js";
 import { initialCards } from "../utils/constants.js";
@@ -18,8 +17,6 @@ import {
   popupProfile,
   popupCard,
   forms,
-  popupImage,
-  popupHeading,
   profileEditBtn,
   addCardBtn,
   name,
@@ -46,9 +43,7 @@ cardList.renderItems();
 
 function popupImgHandler({ name, link }) {
   const popupImg = new PopupWithImage(popupWithImg);
-  popupImage.src = link;
-  popupHeading.textContent = name;
-  popupWithImg.classList.add(selectors.popupOpen);
+  popupImg.open(link,name);
   popupImg.setEventListeners();
 }
 
@@ -84,7 +79,6 @@ addCardBtn.addEventListener("click", () => {
 const profileSet = new PopupWithForm(popupProfile, (profileValues) => {
   const profile = new UserInfo({ name: name, desc: work });
   profile.setUserInfo(profileValues);
-  const profileInfo = profile.getUserInfo();
   profileSet.close(false);
 });
 profileSet.setEventListeners();
@@ -94,6 +88,7 @@ profileEditBtn.addEventListener("click", (evt) => {
   const popup = new Popup(popupProfile);
   popup.open();
 });
+
 
 function fillProfile({ name, desc }) {
   nameInput.value = name;

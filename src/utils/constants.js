@@ -85,8 +85,7 @@ const popupProfile = document.querySelector(selectors.popupProfile);
 const popupCard = document.querySelector(selectors.popupCard);
 const popupWithImg = document.querySelector(selectors.popupImg);
 const forms = Array.from(document.forms);
-const popupImage = popupWithImg.querySelector(selectors.popupImage);
-const popupHeading = popupWithImg.querySelector(selectors.popupImgHeading);
+
 
 // *PROFILE
 const profile = document.querySelector(selectors.profile);
@@ -107,8 +106,6 @@ export {
   popupProfile,
   popupCard,
   forms,
-  popupImage,
-  popupHeading,
   profile,
   profileEditBtn,
   addCardBtn,

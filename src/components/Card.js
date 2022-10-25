@@ -28,7 +28,6 @@ class Card{
     }
 
     _setListeners(){
-        
         this._card.addEventListener('click',(evt) => {
             if(evt.target.classList.contains(this._selectors.like)){
                 this._handleLike();
