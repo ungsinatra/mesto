@@ -4,9 +4,10 @@
 
 ## Технологии и методалогии
  - HTML
--  CSS
--  vanila javaScript
--  BEM
+ -  CSS
+ -  vanila javaScript
+ -  BEM 
+ -  webpack
 
 
-[![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-2.0.0-yellow.svg)](https://semver.org)
