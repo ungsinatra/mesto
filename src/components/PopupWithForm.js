@@ -3,7 +3,7 @@ import { Popup } from "./Popup.js";
 class PopupWithForm extends Popup {
   constructor(popupSelector, submitHandler) {
     super(popupSelector);
-    this._submitHandler = submitHandler;
+    this._submitHandler = submitHandler;                   
     this._form = super.getForm();
     this._popupInputs = Array.from(
       this._form.querySelectorAll(".popup__input")
