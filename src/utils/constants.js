@@ -31,6 +31,7 @@ export const selectors = {
   popupProfile: ".popup_use_profile",
   popupCard: ".popup_use_card",
   popupImg: ".popup_use_img",
+  popupAvatar: ".popup_use_avatar-update",
   form: ".popup__form",
   popupInput: ".popup__input",
   inputName: ".popup__input_value_name",
@@ -46,6 +47,8 @@ export const selectors = {
   work: ".profile__description",
   editBtn: ".profile__edit-btn",
   addBnt: ".profile__add-btn",
+  avatarEditButton:'.profile__avatar-switch-ican',
+  avatarInput:'.popup__input_value_link',
   //template
   template: "#card-tmp",
   cardItem: ".place__item",
@@ -56,6 +59,7 @@ export const selectors = {
   place: ".place",
   placeContainer: ".place__container",
   placeImg: ".place__img",
+  
 };
 export const cardSelectors = {
   cardItem: ".place__item",
@@ -66,6 +70,8 @@ export const cardSelectors = {
   likeButton: ".place__btn-like",
   popupImg: ".popup_use_img",
   remove: "place__btn-del",
+  removeButton:'.place__btn-del',
+  likeCount:'.place__like-count'
 };
 
 export const popupSelecors = {
@@ -75,34 +81,48 @@ export const popupSelecors = {
   popupForm: ".popup__form",
   popupInactiveBtn: "popup__btn-inactive",
   buttonSave: ".popup__btn-save",
+  delPopup:".popup_use_del",
 };
 
 // *popup and form
 const formElement = document.querySelector(selectors.form);
 const nameInput = formElement.querySelector(selectors.inputName);
-const descInput = formElement.querySelector(selectors.inputDesc);
+const aboutInput = formElement.querySelector(selectors.inputDesc);
 const popupProfile = document.querySelector(selectors.popupProfile);
 const popupCard = document.querySelector(selectors.popupCard);
 const popupWithImg = document.querySelector(selectors.popupImg);
+const avatarUpdatePopup = document.querySelector(selectors.popupAvatar);
+const avatarIcon = document.querySelector('.profile__avatar');
 const forms = Array.from(document.forms);
-
+const delPopup = document.querySelector(popupSelecors.delPopup)
 
 // *PROFILE
 const profile = document.querySelector(selectors.profile);
 const profileEditBtn = profile.querySelector(selectors.editBtn);
 const addCardBtn = profile.querySelector(selectors.addBnt);
 const name = profile.querySelector(selectors.name);
-const work = profile.querySelector(selectors.work);
+const about = profile.querySelector(selectors.work);
+const avatarEditButton = profile.querySelector(selectors.avatarEditButton)
+const avatarInput = avatarUpdatePopup.querySelector(selectors.avatarInput)
+const headers = {
+  token:'c5441015-f46a-42d4-9fdb-e128e5e29cd3',
+}
+const url = 'https://mesto.nomoreparties.co/v1/cohort-50'
 
 // *CARD
 const template = document.querySelector(selectors.template).content;
 const placeContainer = document.querySelector(selectors.placeContainer);
+const cardDelButton = template.querySelector(cardSelectors.removeButton);
+
+
+// loading 
 
 export {
+  avatarInput,
   popupWithImg,
   formElement,
   nameInput,
-  descInput,
+  aboutInput,
   popupProfile,
   popupCard,
   forms,
@@ -110,7 +130,14 @@ export {
   profileEditBtn,
   addCardBtn,
   name,
-  work,
+  about,
   template,
   placeContainer,
+  url,
+  headers,
+  delPopup,
+  cardDelButton,
+  avatarUpdatePopup,
+  avatarIcon,
+  avatarEditButton
 };

@@ -13,6 +13,9 @@ import { popupSelecors } from "../utils/constants.js";
 import { Api } from "../components/Api";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import {
+  avatarInput,
+  aboutInput,
+  nameInput,
   popupWithImg,
   popupProfile,
   popupCard,
@@ -20,15 +23,14 @@ import {
   profileEditBtn,
   addCardBtn,
   name,
-  work,
+  about,
   headers,
   url,
   placeContainer,
-  cardDelButton,
   delPopup,
-  userId,
   avatarUpdatePopup,
   avatarIcon,
+  avatarEditButton,
 } from "../utils/constants.js";
 
 // Api
@@ -36,28 +38,25 @@ const api = new Api({ url: url, headers: headers });
 
 const upadeUserInfo = new UserInfo({
   name: name,
-  about: work,
+  about: about,
   avatar: avatarIcon,
 });
 let userData;
 let myCardData;
 
-Promise.all([getUser,getCards])
-  .then(([getUser,getCards]) => {
-    console.log(getUser);
-    console.log(getCards);
-  })
-  .catch(error => {
-    console.log(error)
-  })
+function fillInputValues(inputData) {
+  nameInput.value = inputData.name;
+  aboutInput.value = inputData.about;
+  avatarInput.value = inputData.avatar;
+}
 
 //Инициализация инфомации о пользователе 
 const getUser = api.getUserInfo().then((userInfo) => {
-  // console.log(userInfo);
+  console.log(userInfo)
+  fillInputValues(userInfo);
   userData = userInfo;
   upadeUserInfo.setUserInfo(userData);
 });
-
 
 
 // Инициализация карточки 
@@ -70,6 +69,12 @@ const getCards = api
     console.log(err);
   });
 
+Promise.all([getUser,getCards])
+  .then(([getUser,getCards]) => {
+  })
+  .catch(error => {
+    console.log(error)
+  })
 
 function loadCards(cardsInfo){
   const sectionInstance = new Section({items:cardsInfo,renderer:(item) => {
@@ -98,14 +103,19 @@ function handlePopups(inputsData,callback) {
   callback(inputsData)
 }
 const popupWithFormInstance = new PopupWithForm(popupCard,(formValues) => {
+  renderLoading(true,popupCard);
   const sendCardInfo = api.setCard(formValues);
   sendCardInfo.then((cardData) => {
-    myCardData = cardData;
-    handlePopups(myCardData,() => {
-      const formInputsArray = [myCardData];
-      loadCards(formInputsArray);
+      myCardData = cardData;
+      handlePopups(myCardData,() => {
+        const formInputsArray = [myCardData];
+        loadCards(formInputsArray);
+        popupWithFormInstance.close(true);
+      })
+  sendCardInfo.finally(() => {
+        console.log('finally')
+        renderLoading(false,popupCard);
     })
-    popupWithFormInstance.close(true);
   });
   console.log(formValues);
 })
@@ -141,10 +151,12 @@ function likeHandler({ id }) {
 
 
 function removeCardsHandler(cardInfo, removeCard) {
+ 
   const popupConferm = new PopupWithConfirmation({
     popupSelector: delPopup,
     submitHandler: () => {
       const deleteCard = api.deleteCard(cardInfo);
+      console.log(cardInfo)
       removeCard();
       popupConferm.close();
     },
@@ -154,34 +166,49 @@ function removeCardsHandler(cardInfo, removeCard) {
 }
 
 
-const updateUserInfoHandler = (inputsData,instance,response) => {
+const updateUserInfoHandler = (inputsData,instance,response,popupSelecor) => {
   const update = response(inputsData);
-    update.then(newUserInfo => {
+  update.then(newUserInfo => {
       userData.avatar = newUserInfo.avatar;
-      console.log(userData);
       upadeUserInfo.setUserInfo(newUserInfo);
-  });
+  } )
+  update.finally(() => {
+    renderLoading(false,popupSelecor);
+  })
   instance.close(false);
 }
 
 // Обновление авы
 const avatarInstance = new PopupWithForm(avatarUpdatePopup,(avatar) => {
+  renderLoading(true,avatarUpdatePopup);
   updateUserInfoHandler(avatar,avatarInstance,(userData) => {
     const res = api.updateAvatar(userData);
     return res;
-  })
+  },avatarUpdatePopup)
 })
 avatarInstance.setEventListeners();
 
 
 // Обновление профеля пользователя имя и род деятельности 
 const profileSetInstance = new PopupWithForm(popupProfile, (newProfileInfo) => {
+  renderLoading(true,popupProfile);
   updateUserInfoHandler(newProfileInfo,profileSetInstance,(userData) => {
     const res = api.updateUserInfo(userData);
     return res;
-  })
+  },popupProfile)
 });
 profileSetInstance.setEventListeners();
+
+
+
+function renderLoading(isLoading,popupSelector,text = 'Сохранение...') {
+  const saveButton = popupSelector.querySelector('.popup__btn-save');
+  if(isLoading){
+    saveButton.textContent = text;
+  }else{
+    saveButton.textContent = 'Coхранить';
+  }
+}
 
 
 //Слушатели 
@@ -202,7 +229,7 @@ profileEditBtn.addEventListener("click", (evt) => {
 });
 
 // Слушатель для обновление аватарки
-avatarIcon.addEventListener("click", (evt) => {
+avatarEditButton.addEventListener("click", (evt) => {
   // updateAvatarHandler()
   evt.preventDefault();
   const openPopup = new Popup(avatarUpdatePopup);

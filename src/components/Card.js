@@ -65,6 +65,7 @@ class Card {
  
     _removeCard() {
         // this._card.removeEventListener('click',this.attachEventListeners)
+        this._removeEventListeners();
         this._card.remove();
 
     }
@@ -80,26 +81,25 @@ class Card {
         this._setListeners();
         return this._card;
     }
-    // _removeEventListeners() {
-
-    // }
-    attachEventListeners(evt) {
-
+    _removeEventListeners = (evt) => {
+        console.log('remove');
+        this._card.removeEventListener('click',this._attachEventListeners);
+    }
+    _attachEventListeners = (evt) => {
+        if (evt.target.classList.contains(this._selectors.like)) {
+            this._handleClickLike(this._cardId);
+            
+        }
+        if (evt.target.classList.contains(this._selectors.remove)) {
+            this._removeCardHadler(this._removeCard);
+        }
+        if (evt.target.classList.contains("place__img")) {
+            this._popupImgHandler(this._cardId);
+        }
     }
 
     _setListeners() {
-        this._card.addEventListener("click", (evt) => {
-            if (evt.target.classList.contains(this._selectors.like)) {
-                this._handleClickLike(this._cardId);
-                
-            }
-            if (evt.target.classList.contains(this._selectors.remove)) {
-                this._removeCardHadler(this._removeCard);
-            }
-            if (evt.target.classList.contains("place__img")) {
-                this._popupImgHandler(this._cardId);
-            }
-        });
+        this._card.addEventListener("click",this._attachEventListeners);
     }
 }
 
