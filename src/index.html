@@ -14,19 +14,24 @@
         <section class="profile">
           <div class="profile__wrapper">
             <div class="profile__items">
-              <img
-                src="<%=require('./images/kusko.jpg')%>"
-                class="profile__avatar"
-                alt="Картинка для аватара"
-              />
+              <div class="profile__img-items">             
+                <div class="profile__avatar-switch-ican" ></div>
+                <img
+                
+                  src=""
+                  class="profile__avatar"
+                  alt="Картинка для аватара"
+                />
+              </div> 
+
               <div class="profile__info">
                 <button
                   class="profile__edit-btn"
                   type="button"
                   area-label="Изменить"
                 ></button>
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <p class="profile__description">Исследователь океана</p>
+                <h1 class="profile__name"></h1>
+                <p class="profile__description"></p>
               </div>
             </div>
             <button
@@ -69,7 +74,7 @@
             <span class="popup__input-error popup__input-error_possition_top profile-name-error"></span>
             <input
               type="text"
-              name="desc"
+              name="about"
               maxlength="200"
               minlength="2"
               placeholder="Работа"
@@ -131,6 +136,51 @@
           <p class="popup__desc"></p>
         </div>
       </div>
+
+
+      <!-- card delete popup -->
+      <div class="popup popup_use_del">
+        <div class="popup__content_use_del">
+          <button
+            type="button"
+            aria-label="Закрыть попап"
+            class="popup__close-btn popup__close-btn-img"
+          ></button>
+          <h4 class="popup__title_use_submit-popup ">Вы уверены?</h4>
+          <form name = "confermForm" action="#" class="popup__form popup__form_use_popup-conferm" novalidate>
+          <button type="submit" class="popup__btn-save popup__btn-submit">
+            Да
+          </button>
+        </form>
+        </div>
+      </div>
+      <!-- avatar Update popup -->
+ <div class="popup popup_use_avatar-update">
+        <div class="popup__content">
+          <button
+            type="button"
+            aria-label="Закрыть попап"
+            class="popup__close-btn popup__close-btn-card"
+          ></button>
+          <h4 class="popup__title">Обновить аватар</h4>
+          <form action="#" class="popup__form popup__form_use_card" novalidate>
+            <input
+              type="url"
+              name="link"
+              id="card-url"
+              placeholder="Ссылка на картинку"
+              class="popup__input  popup__input_value_link"
+              required
+            />
+            <span class="popup__input-error popup__input-error_possition_top card-url-error"></span>
+            <button type="submit" class="popup__btn-save popup__btn-submit">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+
+
       <footer class="footer">
         <h5 class="footer__desc">© 2020 Mesto Russia</h5>
       </footer>
@@ -144,12 +194,13 @@
         ></button>
         <img src="" alt="" class="place__img" />
         <div class="place__features">
-          <h3 class="place__title">Карачаевск</h3>
-          <button
+          <h3 class="place__title"></h3>
+          <button 
             type="button"
             aria-label="Нравиться"
             class="place__btn-like"
           ></button>
+          <span class="place__like-count"></span>
         </div>
       </li>
     </template>
