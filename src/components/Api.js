@@ -60,7 +60,7 @@ class Api {
       .then(this._getResFromServer())
   }
 
-  deleteCard({ _id }) {
+  deleteCard(_id) {
     return fetch(`${this._url}/cards/${_id}`, {
       method: "DELETE",
       headers: {
